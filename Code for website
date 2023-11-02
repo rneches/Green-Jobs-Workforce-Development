@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+   <head>
+    <meta charset='utf-8' />
+    <title>Points on a map</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body { 
+        margin: 0; 
+        padding: 0; 
+      }
+      #map { 
+        position: absolute; 
+        top: 0; 
+        bottom: 0; 
+        width: 100%; 
+      }
+    </style>
+  </head>
+  <body>
+    <div id='map'></div>
+    <script>
+    // The value for 'accessToken' begins with 'pk...'
+    mapboxgl.accessToken = 'pk.eyJ1Ijoicm5lY2hlcyIsImEiOiJjbG9ldDZ0c2kwNHlzMnF1aHc2Y3ZoYnRpIn0.6KYtFVJxn1QMxHjYhEN76Q'; 
+    const map = new mapboxgl.Map({
+      container: 'map',
+      // Replace YOUR_STYLE_URL with your style URL.
+      style: 'mapbox://styles/rneches/clog4zn5g006501qkg6f6azzy/draft', 
+      center: [-74, 40.7],
+      zoom: 12
+    });
+
+    // Code from the next step will go here.
+
+/* 
+Add an event listener that runs
+  when a user clicks on the map element.
+*/
+map.on('click', (event) => {
+  // If the user clicked on one of your markers, get its information.
+  const features = map.queryRenderedFeatures(event.point, {
+    layers: ['geocoded-green-jobs-training-80az8m'] // replace with your layer name
+  });
+  if (!features.length) {
+    return;
+  }
+  const feature = features[0];
+
+  // Code from the next step will go here.
+/* 
+    Create a popup, specify its options 
+    and properties, and add it to the map.
+  */
+const popup = new mapboxgl.Popup({ offset: [0, -15] })
+  .setLngLat(feature.geometry.coordinates)
+  .setHTML(
+    `<h3>${feature.properties.program_name}</h3><p>${feature.properties.Patrons}</p><p>${feature.properties.Description}</p>`
+  )
+  .addTo(map);
+
+
+});      
+      
+      
+    </script>
+  </body>
+</html>
