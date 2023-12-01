@@ -41,10 +41,12 @@
     <body>
       <style>
         .rounded-rect {
-          background: white;
+          background-color: white;
           opacity: 1;
           border-radius: 10px;
           box-shadow: 0 0 50px -25px black;
+          margin: 15px;
+          padding: 5px;
         }
 
         .flex-center {
@@ -74,30 +76,12 @@
           align-items: center;
         }
 
-        .sidebar-toggle {
-          position: absolute;
-          width: 1.3em;
-          height: 1.3em;
-          overflow: visible;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        .sidebar-toggle.left {
-          right: -1.5em;
-        }
-
-        .sidebar-toggle:hover {
-          color: #0aa1cf;
-          cursor: pointer;
-        }
-
         .sidebar {
-          transition: transform 1s;
+          transition: transform 0.5s;
           z-index: 1;
-          width: 350px;
-          height: 90%;
+          width: 25%;
+          height: 100%;
+          class: center; 
         }
 
         .center {
@@ -105,18 +89,18 @@
           margin-left: auto;
           margin-right: auto;
           width: 50%;
-                }
-        
+        }
+
         a:link {
           color: black;
           background-color: transparent;
           text-decoration: none;
-                }
+        }
         a:visited {
           color: mediumseagreen;
           background-color: transparent;
           text-decoration: none;
-                }
+        }
         a:hover {
           color: rgb(47, 101, 60);
           background-color: transparent;
@@ -126,7 +110,7 @@
           color: gray;
           background-color: transparent;
           text-decoration: underline;
-                  }
+        }
 
         /*
 The sidebar styling has them "expanded" by default, we use CSS transforms to push them offscreen
@@ -140,50 +124,89 @@ The toggleSidebar() function removes this class from the element in order to exp
       <body>
         <div id="map">
           <div id="left" class="sidebar flex-center left collapsed">
-            <div class="sidebar-content rounded-rect flex-center">
+            <div class="rounded-rect sidebar-content flex-center">
               <h2>
                 <p
                   style="
                     line-height: 30pt;
                     text-align: center;
                     color: rgb(47, 101, 60);
-                    font-size: 30pt;
+                    font-size: 25pt;
                   "
                 >
                   Green Jobs Training Programs
                 </p>
               </h2>
+              <p>
+                
+              </p>
+              <p>
+              
+              </p>
               <p
                 style="
                   line-height: 16pt;
-                  text-align: center;
+                  text-align: left;
                   color: black;
-                  font-size: 16pt;
+                  font-size: 11pt;
+                  margin: 10px;
                 "
               >
-                Some description here about the project, perhaps pulled from the
-                introduction of the report. Maybe something about the size of the markers being relative to the size of the organization (in patrons)
+                New York City's emerging green economy is poised to become an
+                important source of well-paying jobs in the years ahead.
+                However, ensuring that many more New Yorkers are prepared to
+                access and succeed in these jobs will require a new level of
+                awareness about the education and training infrastructure
+                aligned with these careers. This map and the Center for an Urban
+                Future’s corresponding report XXTITLE provide the first detailed
+                overview of programs that are helping to prepare New Yorkers for
+                green economy jobs.
+                <b>
+                  Explore the landscape of more than 30 nonprofit and low-cost
+                  green jobs training programs currently operating in New York
+                  City.
+                </b>
               </p>
-
-              <p
+               <p
                 style="
-                  line-height: 16pt;
-                  text-align: center;
+                  line-height: 12pt;
+                  text-align: left;
                   color: black;
-                  font-size: 12pt;
+                  font-size: 9pt;
+                  margin: 5px;
                 "
               >
-                <i
-                  >Select the green markers on the map to learn more about each
-                  program.</i
-                >
+               <i>Markers are sized relative to number of patrons. </i> 
+                
               </p>
 
-              <a href='https://nycfuture.org/'>
+              <figure style="display: flex">
                 <img
-                src="https://github.com/rneches/Green-Jobs-Workforce-Development/blob/main/CUF_logo_blue_labels%20(1).jpg?raw=true"
-                alt="alttext"
-                class="center"></a>
+                  style="
+                    max-width: 576px;
+                    height: 49px;
+                    margin: 10px;
+                    width: 90px;
+                  "
+                  src="https://github.com/rneches/Green-Jobs-Workforce-Development/blob/main/CUF_logo_blue_labels%20(1).jpg?raw=true"
+                  alt="Center for an Urban Future"
+                  class="left"
+                />
+                <a href="https://nycfuture.org/">
+                  <img
+                    style="
+                      max-width: 576px;
+                      height: 49px;
+                      margin: 10px;
+                      width: 130px;
+                    "
+                    src="https://cdn.glitch.global/e72928c2-82e3-4cb2-848f-05bb054f2654/download%20(1).png?v=1701444418768"
+                    alt="JP Morgan Chase & Co."
+                    class="right"
+                /></a>
+              </figure>
+              
+          
             </div>
           </div>
         </div>
@@ -259,12 +282,16 @@ Add an event listener that runs
 
           const popup = new mapboxgl.Popup({ offset: [0, -15] })
             .setLngLat(feature.geometry.coordinates)
-            .setHTML('<h3><p style="color:MediumSeaGreen; font-size:20px; line-height:22px"><a href="' +
+            .setHTML(
+              '<h3><p style="color:DarkOliveGreen; font-size:20px; line-height:22px"><a href="' +
                 feature.properties.URL +
                 '">' +
                 feature.properties.program_name +
-                "</a></h3>"+
-              "<p><b>Patrons: </b>" +
+                "</a></h3>" +
+                '<h3><em><p style = "color:SlateGrey; font-size:15px; ">' +
+                feature.properties.skills +
+                "</em></h3>" +
+                "<p><b>Patrons: </b>" +
                 feature.properties.patrons +
                 "</p>" +
                 feature.properties.Description +
