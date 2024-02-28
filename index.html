@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -14,84 +13,59 @@
       body {
         margin: 0;
         padding: 0;
+        display: flex; /* Add this line to make the body a flex container */
+        
       }
+
       #map {
         position: absolute;
         top: 0;
         bottom: 0;
         width: 100%;
+        flex-grow: 1; /* Add this line to make the map flex-grow and take the remaining space */
       }
-    </style>
-  </head>
 
-  <body>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
+      .container {
+        display: flex;
+        z-index: 1; /* Add this line to set the z-index of the container */
       }
-      #map {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 100%;
+
+      .sidebar {
+        transition: transform 0.5s;
+        font-family: "Georgia", "sans-serif";
+        width: 300px;
+        position: fixed;
+        z-index: 2;
+        top: 20px; 
+        left: 20px;
+        background-color: #333;
+        color: white;
+        padding: 20px;
+        box-sizing: border-box;
+        
+        
+         /* Add this line to set the z-index of the sidebar */
       }
-    </style>
 
-    <body>
-      <style>
-        .rounded-rect {
-          background-color: white;
-          opacity: 1;
-          border-radius: 10px;
-          box-shadow: 0 0 50px -25px black;
-          margin: 15px;
-          padding: 5px;
-        }
+      .sidebar h2 {
+        margin-bottom: 20px;
+      }
 
-        .flex-center {
-          position: absolute;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
+      .content {
+        flex-grow: 1;
+        padding: 20px;
+        box-sizing: border-box;
+      }
 
-        .flex-center.left {
-          left: 0px;
-        }
+      /* Example formatting for the main content */
+      .content h1 {
+        color: #333;
+      }
 
-        .flex-center.right {
-          right: 0px;
-        }
-
-        .sidebar-content {
-          position: absolute;
-          width: 95%;
-          height: 95%;
-          font-family: Franklin Gothic Urw, sans-serif;
-          font-size: 32px;
-          color: gray;
-          display: block;
-          justify-content: center;
-          align-items: center;
-        }
-
-        .sidebar {
-          transition: transform 0.5s;
-          z-index: 1;
-          width: 25%;
-          height: 100%;
-          class: center; 
-        }
-
-        .center {
-          display: block;
-          margin-left: auto;
-          margin-right: auto;
-          width: 50%;
-        }
-
-        a:link {
+      .content p {
+        line-height: 1.6;
+      }
+          a:link {
           color: black;
           background-color: transparent;
           text-decoration: none;
@@ -111,52 +85,18 @@
           background-color: transparent;
           text-decoration: underline;
         }
-
-        /*
-The sidebar styling has them "expanded" by default, we use CSS transforms to push them offscreen
-The toggleSidebar() function removes this class from the element in order to expand it.
-*/
-        .left.collapsed {
-          transform: translateX(-295px);
-        }
-      </style>
-
-      <body>
-        <div id="map">
-          <div id="left" class="sidebar flex-center left collapsed">
-            <div class="rounded-rect sidebar-content flex-center">
-              <h2>
-                <p
-                  style="
-                    line-height: 30pt;
-                    text-align: center;
-                    color: rgb(47, 101, 60);
-                    font-size: 25pt;
-                    padding-left: 30px;
-                    padding-right: 30px;
-                  "
-                >
-                  Green Jobs Training Programs
-                </p>
-              </h2>
-              <p>
-                
-              </p>
-              <p>
-              
-              </p>
-              <p
-                style="
-                  line-height: 16pt;
-                  text-align: left;
-                  color: black;
-                  font-size: 11pt;
-                  margin-top: 20%;
-                  padding-right: 10px;
-                  padding-left: 10px;
-                "
-              >
-                New York City's emerging green economy is poised to become an
+      .left.collapsed {
+        transform: translateX(-295px);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div class="container">a
+      <div class="sidebar">
+        <h2>NYC's Green Jobs Training Program</h2>
+        <p>
+          New York City's emerging green economy is poised to become an
                 important source of well-paying jobs in the years ahead.
                 However, ensuring that many more New Yorkers are prepared to
                 access and succeed in these jobs will require a new level of
@@ -165,106 +105,66 @@ The toggleSidebar() function removes this class from the element in order to exp
                 Future’s corresponding report XXTITLE provide the first detailed
                 overview of programs that are helping to prepare New Yorkers for
                 green economy jobs.
-                <b>
+              <p>
+        </p>  <b>
                   Explore the landscape of more than 30 nonprofit and low-cost
                   green jobs training programs currently operating in New York
                   City.
                 </b>
-              </p>
-               <p
-                style="
-                  line-height: 12pt;
-                  text-align: left;
-                  color: black;
-                  font-size: 9pt;
-                  padding-left: 20px;
-                "
-              >
-               <i>Markers are sized relative to number of patrons. </i> 
-                
-              </p>
-
-              <figure style="display: flex">
-                <img
-                  style="
-                    max-width: 576px;
-                    height: 49px;
-                    margin: 10px;
-                    width: 90px;
-                    margin-top: 10px;
-                  "
-                  src="https://github.com/rneches/Green-Jobs-Workforce-Development/blob/main/CUF_logo_blue_labels%20(1).jpg?raw=true"
-                  alt="Center for an Urban Future"
-                  class="left"
-                />
+        </p>
+         <figure style="display: flex">
                 <a href="https://nycfuture.org/">
                   <img
                     style="
                       max-width: 576px;
                       height: 49px;
                       margin: 10px;
-                      width: 130px;
-                      margin-top: 10px;
+                      width: 90px;
                     "
-                    src="https://github.com/rneches/Green-Jobs-Workforce-Development/blob/main/jpmorgan.png?raw=true"
+                    src="https://cdn.glitch.global/826f93cc-4fee-4583-bf15-07a48f4fbef4/cuflogo.png?v=1705513443733"
+                    alt="Center for an Urban Future"
+                    class="left"
+                /></a>
+                <a href="https://www.jpmorganchase.com/impact">
+                  <img
+                    style="
+                      max-width: 576px;
+                      height: 49px;
+                      margin: 10px;
+                      width: 130px;
+                    "
+                    src="https://cdn.glitch.global/826f93cc-4fee-4583-bf15-07a48f4fbef4/us%24jpm23.gif?v=1705513451064"
                     alt="JP Morgan Chase & Co."
                     class="right"
                 /></a>
               </figure>
-              
-          
-            </div>
-          </div>
-        </div>
-      </body>
-      <script>
-        // The value for 'accessToken' begins with 'pk...'
-        mapboxgl.accessToken =
-          "pk.eyJ1Ijoicm5lY2hlcyIsImEiOiJjbG9ldDZ0c2kwNHlzMnF1aHc2Y3ZoYnRpIn0.6KYtFVJxn1QMxHjYhEN76Q";
-        const map = new mapboxgl.Map({
-          container: "map",
-          // Replace YOUR_STYLE_URL with your style URL.
-          style: "mapbox://styles/rneches/clog4zn5g006501qkg6f6azzy/draft",
-          center: [-73.911, 40.722],
-          zoom: 10.8,
-        });
+      </div>
+      
+    </div>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1Ijoicm5lY2hlcyIsImEiOiJjbG9ldDZ0c2kwNHlzMnF1aHc2Y3ZoYnRpIn0.6KYtFVJxn1QMxHjYhEN76Q";
+      const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/rneches/clog4zn5g006501qkg6f6azzy/draft",
+        center: [-73.911, 40.722],
+        zoom: 10.8,
+      });
 
-        // Code from the next step will go here.
 
-        function toggleSidebar(id) {
-          var elem = document.getElementById(id);
-          var classes = elem.className.split(" ");
-          var collapsed = classes.indexOf("collapsed") !== -1;
+      map.on("load", function () {
+        toggleSidebar("left");
+      });
 
-          var padding = {};
+      // Add filled county polygons
+      // for highlighted display.
 
-          if (collapsed) {
-            // Remove the 'collapsed' class from the class list of the element, this sets it back to the expanded state.
-            classes.splice(classes.indexOf("collapsed"), 1);
-
-            padding[id] = 300; // In px, matches the width of the sidebars set in .sidebar CSS class
-            map.easeTo({
-              padding: padding,
-              duration: 1000, // In ms, CSS transition duration property for the sidebar matches this value
-            });
-          } else {
-            padding[id] = 0;
-            // Add the 'collapsed' class to the class list of the element
-            classes.push("collapsed");
-
-            map.easeTo({
-              padding: padding,
-              duration: 1000,
-            });
-          }
-
-          // Update the class list on the element
-          elem.className = classes.join(" ");
-        }
-
-        map.on("load", function () {
-          toggleSidebar("left");
-        });
+      /* 
+Add an event listener that runs
+  when a user clicks on the map element.
+*/
+        // Add filled county polygons
+        // for highlighted display.
 
         /* 
 Add an event listener that runs
@@ -279,13 +179,17 @@ Add an event listener that runs
             return;
           }
           const feature = features[0];
-
+          
+          
+          
           // Code from the next step will go here.
           /* 
+          
     Create a popup, specify its options 
     and properties, and add it to the map.
   */
 
+          
           const popup = new mapboxgl.Popup({ offset: [0, -15] })
             .setLngLat(feature.geometry.coordinates)
             .setHTML(
@@ -297,7 +201,7 @@ Add an event listener that runs
                 '<h3><em><p style = "color:SlateGrey; font-size:15px; ">' +
                 feature.properties.skills +
                 "</em></h3>" +
-                "<p><b>Participants: </b>" +
+                "<p><b>Patrons: </b>" +
                 feature.properties.patrons +
                 "</p>" +
                 feature.properties.Description +
@@ -306,7 +210,6 @@ Add an event listener that runs
 
             .addTo(map);
         });
-      </script>
-    </body>
+    </script>
   </body>
 </html>
