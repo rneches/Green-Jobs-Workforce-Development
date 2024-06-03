@@ -13,8 +13,10 @@
       body {
         margin: 0;
         padding: 0;
-        display: flex; /* Add this line to make the body a flex container */
+           display: flex;
+        overflow: hidden;
         
+        /* Add this line to make the body a flex container */
       }
 
       #map {
@@ -24,39 +26,73 @@
         width: 100%;
         flex-grow: 1; /* Add this line to make the map flex-grow and take the remaining space */
       }
-
-      .container {
-        display: flex;
-        z-index: 1; /* Add this line to set the z-index of the container */
-      }
+      
 
       .sidebar {
-        transition: transform 0.5s;
-        font-family: "Georgia", "sans-serif";
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
         width: 300px;
-        position: fixed;
-        z-index: 2;
-        top: 20px; 
-        left: 20px;
+        left: 50px;
+        top: 100px;
+        bottom: 100px;
         background-color: #333;
-        color: white;
-        padding: 20px;
-        box-sizing: border-box;
-        
-        
-         /* Add this line to set the z-index of the sidebar */
-      }
+    color: white;
+    overflow-y: auto; /* Allow scrolling if content overflows */
+    box-sizing: border-box;
+    padding: 20px;
+        position: fixed;
 
+        /* Add this line to set the z-index of the sidebar */
+      }
       .sidebar h2 {
-        margin-bottom: 20px;
+        margin: 30px 15px 15px;
+        font-family: "Georgia";
+        color: #3cb371;
+        text-align: center;
+        font-size: 1.5vw;
       }
 
-.img {
-  width: 100%;
-}
+      .sidebar p {
+        flex-grow: 1;
+        margin: 1px 20px; 
+        box-sizing: border-box;
+        font-family: "sans-serif";
+        color: white;
+        font-size: 1vw;
+      }
+
+      .image-container {
+        flex-grow: 1;
+       display: flex;
+    justify-content: center; /* Center the images horizontally */
+        padding: 0 10px;
+            margin: 10px 10px 10px 10px; /* Center the container horizontally */
+
+      }
+
+      .image-container img {
+                flex-grow: 1;
+        width: 85%;
+        height: auto;
+        margin: 10px 10px;
+
+        /* Adjust the margin as needed */
+      }
+
+      .logo {        flex-grow: 1;
+
+%;
+   /* Increase width to 100% */ /* Maximum width of the images */
+        height: auto;
+ 
+
+        /* Adjust as needed */
+      }
+
       .content {
         flex-grow: 1;
-        padding: 20px;
         box-sizing: border-box;
       }
 
@@ -66,83 +102,71 @@
       }
 
       .content p {
-        line-height: 1.6;
+        line-height: 1;
       }
-          a:link {
-          color: black;
-          background-color: transparent;
-          text-decoration: none;
-        }
-        a:visited {
-          color: mediumseagreen;
-          background-color: transparent;
-          text-decoration: none;
-        }
-        a:hover {
-          color: rgb(47, 101, 60);
-          background-color: transparent;
-          text-decoration: underline;
-        }
-        a:active {
-          color: gray;
-          background-color: transparent;
-          text-decoration: underline;
-        }
-      .left.collapsed {
-        transform: translateX(-295px);
+      a:link {
+        color: black;
+        background-color: transparent;
+        text-decoration: none;
       }
+      a:visited {
+        color: mediumseagreen;
+        background-color: transparent;
+        text-decoration: none;
+      }
+      a:hover {
+        color: rgb(47, 101, 60);
+        background-color: transparent;
+        text-decoration: underline;
+      }
+      a:active {
+        color: gray;
+        background-color: transparent;
+        text-decoration: underline;
+      }
+      
+      
+
     </style>
   </head>
   <body>
     <div id="map"></div>
-    <div class="container">a
-      <div class="sidebar">
-        <h2><p style="color: #3cb371">NYC's Green Jobs Training Program</p></h2>
-        <p>
-          New York City's emerging green economy is poised to become an
-                important source of well-paying jobs in the years ahead.
-                However, ensuring that many more New Yorkers are prepared to
-                access and succeed in these jobs will require a new level of
-                awareness about the education and training infrastructure
-                aligned with these careers. This map and the Center for an Urban
-                Future’s corresponding report XXTITLE provide the first detailed
-                overview of programs that are helping to prepare New Yorkers for
-                green economy jobs.
-              <p>
-        </p>  <b>
-                  Explore the landscape of more than 30 nonprofit and low-cost
-                  green jobs training programs currently operating in New York
-                  City.
-                </b>
-        </p>
-         <figure style="display: flex">
-                <a href="https://nycfuture.org/">
-                  <img
-                    style="
-                      max-width: 576px;
-                      height: 49px;
-                      margin: 10px;
-                      width: 90px;
-                    "
-                    src="https://github.com/rneches/Green-Jobs-Workforce-Development/blob/main/images/cuf-logo-white.png?raw=true"
-                    alt="Center for an Urban Future"
-            
-                /></a>
-                <a href="https://www.jpmorganchase.com/impact">
-                  <img
-                    style="
-                      max-width: 576px;
-                      height: 49px;
-                      width: 90px;
-                    "
-                    src="https://github.com/rneches/Green-Jobs-Workforce-Development/blob/main/images/jp-morgan-white.png?raw=true"
-                    alt="JP Morgan Chase & Co."
-               
-                /></a>
-              </figure>
+    <div class="sidebar">
+      <h2>NYC's Green Jobs Training Program</h2>
+      <p>
+        New York City's emerging green economy is poised to become an important
+        source of well-paying jobs in the years ahead. However, ensuring that
+        many more New Yorkers are prepared to access and succeed in these jobs
+        will require a new level of awareness about the education and training
+        infrastructure aligned with these careers. This map and the Center for
+        an Urban Future’s corresponding report XXTITLE provide the first
+        detailed overview of programs that are helping to prepare New Yorkers
+        for green economy jobs.
+      </p>
+
+      <p>
+        <b>
+          Explore the landscape of more than 30 nonprofit and low-cost green
+          jobs training programs currently operating in New York City.
+        </b>
+      </p>
+
+      <div class="image-container">
+        <a href="https://nycfuture.org/">
+          <img
+            class="logo"
+            src="https://github.com/rneches/Green-Jobs-Workforce-Development/blob/main/images/cuf-logo-white.png?raw=true"
+            alt="Center for an Urban Future"
+        /></a>
+        <a href="https://www.jpmorganchase.com/impact">
+          <img
+            class="logo"
+            src="https://github.com/rneches/Green-Jobs-Workforce-Development/blob/main/images/jp-morgan.png?raw=true"
+            alt="JP Morgan Chase & Co."
+        /></a>
       </div>
-      
     </div>
+
     <script>
       mapboxgl.accessToken =
         "pk.eyJ1Ijoicm5lY2hlcyIsImEiOiJjbG9ldDZ0c2kwNHlzMnF1aHc2Y3ZoYnRpIn0.6KYtFVJxn1QMxHjYhEN76Q";
@@ -153,65 +177,62 @@
         zoom: 10.8,
       });
 
-
       map.on("load", function () {
         toggleSidebar("left");
       });
 
-      // Add filled county polygons
-      // for highlighted display.
+      map.on("click", (event) => {
 
-      /* 
-Add an event listener that runs
-  when a user clicks on the map element.
-*/
-        // Add filled county polygons
-        // for highlighted display.
-
-        /* 
-Add an event listener that runs
-  when a user clicks on the map element.
-*/
-        map.on("click", (event) => {
-          // If the user clicked on one of your markers, get its information.
-          const features = map.queryRenderedFeatures(event.point, {
-            layers: ["geocoded-green-jobs-training-55nf63"], // replace with your layer name
-          });
-          if (!features.length) {
-            return;
-          }
-          const feature = features[0];
-          
-          
-          
-          // Code from the next step will go here.
-          /* 
-          
-    Create a popup, specify its options 
-    and properties, and add it to the map.
-  */
-
-          
-          const popup = new mapboxgl.Popup({ offset: [0, -15] })
-            .setLngLat(feature.geometry.coordinates)
-            .setHTML(
-              '<h3><p style="color:DarkOliveGreen; font-size:20px; line-height:22px"><a href="' +
-                feature.properties.URL +
-                '">' +
-                feature.properties.program_name +
-                "</a></h3>" +
-                '<h3><em><p style = "color:SlateGrey; font-size:15px; ">' +
-                feature.properties.skills +
-                "</em></h3>" +
-                "<p><b>Participants (all locations): </b>" +
-                feature.properties.participants +
-                "</p>" +
-                feature.properties.Description +
-                "</p>"
-            )
-
-            .addTo(map);
+        const features = map.queryRenderedFeatures(event.point, {
+          layers: ["geocoded-green-jobs-training-55nf63"], // replace with your layer name
         });
+        if (!features.length) {
+          return;
+        }
+        const feature = features[0];
+       
+
+
+        const popup = new mapboxgl.Popup({ offset: [0, -15] })
+          .setLngLat(feature.geometry.coordinates)
+          .setHTML(
+            '<h3><p style="color:DarkOliveGreen; font-size:20px; line-height:22px"><a href="' +
+              feature.properties.URL +
+              '">' +
+              feature.properties.program_name +
+              "</a></h3>" +
+              '<h3><em><p style = "color:SlateGrey; font-size:15px; ">' +
+              feature.properties.skills +
+              "</em></h3>" +
+              "<p><b>Participants (all locations): </b>" +
+              feature.properties.participants +
+              "</p>" +
+              feature.properties.Description +
+              "</p>"
+          )
+
+          .addTo(map);
+        
+         const featureName = selectedFeature.properties.program_name;
+        
+        
+        // Get all features with the same name
+        const sameNameFeatures = map.querySourceFeatures('geocoded-green-jobs-training-55nf63', {
+            filter: ['==', 'program_name', featureName]
+        });
+        
+                // Highlight features with the same name
+
+           sameNameFeatures.forEach(feature => {
+            map.setFeatureState(
+                { source: 'geocoded-green-jobs-training-55nf63', id: feature.id },
+                { highlight: true }
+            );
+        });
+
+        
+        
+      });
     </script>
   </body>
 </html>
